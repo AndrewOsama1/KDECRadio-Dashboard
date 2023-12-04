@@ -1,0 +1,29 @@
+## storage apis
+
+POST http://localhost:3000/api/${language}/storage/upload/image HTTP/1.1
+
+{
+    "file": ""
+}
+
+POST http://localhost:3000/api/${language}/storage/upload/video HTTP/1.1
+
+{
+    "file": ""
+}
+
+POST http://localhost:3000/api/${language}/storage/upload/record HTTP/1.1
+
+{
+    "file": ""
+}
+
+POST http://localhost:3000/api/${language}/storage/upload/document HTTP/1.1
+
+{
+    "file": ""
+}
+
+## make sure to use enctype multi-part to upload
+
+## output will be a s3 url

@@ -1,0 +1,11 @@
+### category apis:
+
+## get all categories
+
+GET http://localhost:3000/api/${language}/category HTTP/1.1
+Cookie: S_UT=${your_token}
+
+### get all category albums
+
+GET http://localhost:3000/api/${language}/category/${categoryId}/albums HTTP/1.1
+Cookie: S_UT=${your_token}

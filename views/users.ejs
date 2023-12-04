@@ -1,0 +1,175 @@
+<head>
+    <script defer src="/js/export.js"></script>
+</head>
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">User List</h4>
+                        </div>
+                    </div>
+                    <div class="iq-card-body">
+                        <div class="table-responsive">
+                            <div class="row justify-content-between">
+        <div class="col-sm-12 col-md-12 d-flex flex-column flex-sm-row align-items-sm-center">
+                                    <div id="user_list_datatable_info" class="dataTables_filter col-9">
+                                        <form class="mr-3 position-relative" method="get" action="/users">
+                                            <div class="form-group mb-0">
+                                                <div class="d-flex">
+                                                    <input type="search" value="<%= search %>" class="form-control" name="search"
+                                                    id="exampleInputSearch" placeholder="Search"
+                                                    aria-controls="user-list-table"
+                                                    style="width: 200px;">
+                                                    <button style="border-radius: 6px;margin-left: 10px;" class="btn btn-primary">Search</button>
+                                                    <button
+                                                        style="border-radius: 6px;margin-left: 10px;"
+                                                        class="btn btn-primary btn-open trigger"
+                                                        type="button"
+                                                        modal-target="export-users">
+                                                            Export
+                                                    </button>
+                                                </div>
+                                                <% if (search && search != '') { %>
+                                                    <input type="hidden" name="limit" value="<%= limit %>">
+                                                <% } %>
+                                                <input type="hidden" value="1" name="page">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-wrapper" modal="export-users">
+                                        <div class="modal">
+                                            <div class="head">
+                                                <h3>Export users</h3>
+                                                <a class="btn-close trigger" modal-target="export-users"></a>
+                                            </div>
+                                            <div class="content">
+                                                <form action="/users/export" class="modal-form exportForm" method="get">
+                                                    <select name="type" id="">
+                                                        <option value="all" selected>Export All</option>
+                                                        <option value="age">Filter by age then export</option>
+                                                        <option value="date">Filter by date then export</option>
+                                                    </select>
+                                                    <div class="inputs" style="display: grid;grid-auto-flow: row;"></div>
+                                                    <button class="btn btn-primary">Export</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-inline-list flex-sm-column mt-3">
+                                        <h6>Total users: <%= total %></h6>
+                                        <form method="get" action="/users">
+                                            <h6>Users per page:</h6>
+                                            <% if (search && search != '') { %>
+                                                <input type="hidden" name="search" value="<%= search %>">
+                                            <% } %>
+                                            <select name="limit" id="limitSetter">
+                                                <% if (limit == 10) { %>
+                                                    <option value="10" selected>10</option>
+                                                    <option value="25">25</option>
+                                                    <option value="50">50</option>
+                                                <% } %>
+                                                <% if (limit == 25) { %>
+                                                    <option value="10">10</option>
+                                                    <option value="25" selected>25</option>
+                                                    <option value="50">50</option>
+                                                <% } %>
+                                                <% if (limit == 50) { %>
+                                                    <option value="10">10</option>
+                                                    <option value="25">25</option>
+                                                    <option value="50" selected>50</option>
+                                                <% } %>
+                                            </select>
+                                            <input type="hidden" value="1" name="page">
+                                        </form>
+                                        <% if (total > limit) { %>
+                                            <% let pageLink = `/users?` %>
+                                            <% if (search && search != '') { %>
+                                                <% pageLink = pageLink + `search=${search}&` %>
+                                            <% } %>
+                                            <% if (limit) { %>
+                                                <% pageLink = pageLink + `limit=${limit}&` %>
+                                            <% } %>
+                                            <% pageLink = pageLink + `page=` %>
+                                            <ul>
+                                                <% if (page > 1) { %>
+                                                    <li>
+                                                        <a href="<%= pageLink + (page - 1) %>">
+                                                            <img src="/images/icons/arrow-left-double-line.svg" alt="">
+                                                        </a>
+                                                    </li>
+                                                <% } %>
+                                                <% if (page > 2) { %>
+                                                    <li>
+                                                        <a href="<%= pageLink + 1 %>">1</a>..
+                                                    </li>
+                                                <% } %>
+                                                <li class="active">
+                                                    <a href="<%= pageLink + page %>"><%= page %></a>
+                                                </li>
+                                                <% if ((Math.ceil(total/ limit) - page) >= 1) { %>
+                                                    <li>
+                                                        <a href="<%= pageLink + (page + 1) %>"><%= page + 1 %></a>
+                                                    </li>
+                                                <% } %>
+                                                <% if ((Math.ceil(total/ limit) - page) >= 2) { %>
+                                                    <li>
+                                                        <a href="<%= pageLink + (page + 2) %>"><%= page + 2 %></a>
+                                                    </li>
+                                                <% } %>
+                                                <% if ((Math.ceil(total/ limit) - page) >= 3) { %>
+                                                    <li>
+                                                        ..<a href="<%= pageLink + Math.ceil(total/ limit) %>"><%= Math.ceil(total/ limit) %></a>
+                                                    </li>
+                                                <% } %>
+                                                <% if (Math.ceil(total/ limit) != page) { %>
+                                                    <li>
+                                                        <a href="<%= pageLink + (page + 1) %>">
+                                                            <img src="/images/icons/arrow-right-double-line.svg" alt="">
+                                                        </a>
+                                                    </li>
+                                                <% } %>
+                                            </ul>
+                                        <% } %>
+                                   
+                                </div>
+                            </div>
+                            </div>
+                            <table id="user-list-table" class="table table-striped table-bordered mt-4"
+                                role="grid" aria-describedby="user-list-page-info">
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Age</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body">
+                                    <% users.forEach(user=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= user.email %>
+                                            </td>
+                                            <td>
+                                                <%= user.name %>
+                                            </td>
+                                            <td>
+                                                <%= user.phone %>
+                                            </td>
+                                            <td>
+                                                <%= user.age %>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

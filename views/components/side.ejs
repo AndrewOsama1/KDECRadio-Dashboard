@@ -1,0 +1,45 @@
+<div class="iq-sidebar">
+    <div class="iq-sidebar-logo d-flex justify-content-between">
+        <a href="./categories" class="header-logo">
+            <img src="images/logo.png" class="img-fluid rounded-normal" alt="">
+            <div class="logo-title">
+                <span class="text-primary text-uppercase">KDEC Radio</span>
+            </div>
+        </a>
+        <div class="iq-menu-bt-sidebar">
+            <div class="iq-menu-bt align-self-center">
+                <div class="wrapper-menu">
+                    <div class="main-circle"><i class="las la-bars"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="sidebar-scrollbar">
+        <nav class="iq-sidebar-menu">
+            <ul id="iq-sidebar-toggle" class="iq-menu">
+                <li>
+                    <a href="/categories" class="iq-waves-effect"><i
+                            class="las la-play-circle"></i><span>Categories</span></a>
+                </li>
+                <li>
+                    <a href="/users" class="iq-waves-effect"><i class="las la-user"></i><span>Users</span></a>
+                </li>
+                <li>
+                    <a href="/notification" class="iq-waves-effect"><i
+                            class="lab la-wpforms"></i><span>Notifications</span></a>
+                </li>
+                <li>
+                    <a href="/chats" class="iq-waves-effect"><i
+                            class="lar la-envelope"></i><span>Chats</span></a>
+                </li>
+                <li class="logoutAction">
+                    <a class="iq-waves-effect">
+                        <i class="ri-logout-circle-line"></i>
+                        <span>Logout</span>
+                    </a>
+                    <form action="/logout?_method=DELETE" method="POST"></form>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

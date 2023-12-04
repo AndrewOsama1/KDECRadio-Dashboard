@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <%- include('./components/head/stylesheets') %> 
+        <%- include('./components/head/scripts') %> 
+        <%- include('./components/head/meta') %>
+    </head>
+    <body>
+        <div id="loading">
+            <div id="loading-center">
+            </div>
+        </div>
+        <section class="sign-in-page">
+            <div class="container">
+                <div class="row justify-content-center align-items-center height-self-center">
+                    <div class="col-md-6 col-sm-12 col-12 align-self-center">
+                        <div class="sign-user_card ">
+                            <div class="d-flex justify-content-center">
+                                <div class="sign-user_logo">
+                                    <img src="images/logo.png" class=" img-fluid" alt="Logo">
+                                </div>
+                            </div>
+                            <div class="sign-in-page-data">
+                                <div class="sign-in-from w-100 pt-5 m-auto">
+                                    <h1 class="mb-3 text-center">Login</h1>
+                                    <form class="mt-4" action="/login" method="POST">
+                                        <div class="form-group">
+                                            <label for="username">Email</label>
+                                            <input type="email" class="form-control mb-0" minlength="3" maxlength="64" id="username" name="email"
+                                                placeholder="Enter Email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control mb-0" minlength="5" maxlength="32" id="password" name="password"
+                                                placeholder="Password">
+                                        </div>
+                                        <div class="sign-info">
+                                            <button type="submit" class="btn btn-primary mb-2">Login</button>
+                                        </div>
+                                    </form>
+                                    <p id="error-message" style="color: red;"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

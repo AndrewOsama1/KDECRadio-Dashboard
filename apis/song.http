@@ -1,0 +1,11 @@
+### song apis:
+
+## search in songs
+
+GET http://localhost:3000/api/${language}/song?search={searchValue}&limit={10||25||50}&page={pageNumber} HTTP/1.1
+Cookie: S_UT=${your_token}
+
+### update song views
+
+POST http://localhost:3000/api/${language}/song/${songId}/view HTTP/1.1
+Cookie: S_UT=${your_token}

@@ -1,0 +1,11 @@
+### album apis:
+
+## get album
+
+GET http://localhost:3000/api/${language}/album/${albumId} HTTP/1.1
+Cookie: S_UT=${your_token}
+
+### get all album songs
+
+GET http://localhost:3000/api/${language}/album/${albumId}/songs HTTP/1.1
+Cookie: S_UT=${your_token}

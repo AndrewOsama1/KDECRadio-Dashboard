@@ -1,0 +1,31 @@
+### base url:
+
+# http://${domain}/api/${language}
+# language is a required parameter and can be "en" or "ar"
+
+## auth: (required to use other apis)
+POST http://localhost:3000/api/${language}/auth/token HTTP/1.1
+Content-Type: application/json
+
+{
+    "uid": "${user.uid}"
+}
+
+## test inputs:
+#{
+#    "uid": "68Ojs2sfXnf85EvO20J1XK5gFG12"
+#}
+
+## test output:
+
+#succeed
+#{
+#  "results": {
+#    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2YWwiOiI2OE9qczJzZlhuZjg1RXZPMjBKMVhLNWdGRzEyIiwiaWF0IjoxNjk4MTQ3NzE0LCJleHAiOjE2OTgyMzQxMTR9.A7-PwOZnpZ6jwr-4s8sJa_E-BvqN2tbGKYfwJXGmuI8"
+#  }
+#}
+
+# failed
+#{
+#  "message": "User not found"
+#}

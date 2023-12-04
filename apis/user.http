@@ -1,0 +1,36 @@
+## users apis
+
+## get user by uid
+
+GET http://localhost:3000/api/${language}/user/${uid} HTTP/1.1
+Cookie: S_UT=${your_token}
+
+### add user
+
+POST http://localhost:3000/api/${language}/user/add HTTP/1.1
+Cookie: S_UT=${your_token}
+
+# user: {
+#   uid: firebase.auth unique uid
+#   email: string, 
+#   name: string,
+#   phone: string,
+#   age: number
+#}
+
+### user notifications
+
+GET http://localhost:3000/api/${language}/user/${uid}/notification HTTP/1.1
+Cookie: S_UT=${your_token}
+
+### add user notification
+
+POST http://localhost:3000/api/${language}/user/${uid}/notification/add HTTP/1.1
+Cookie: S_UT=${your_token}
+
+# notification: {
+#   title: string, 
+#   content: string,
+#   sendAt: date,
+#   userId: user.id
+#}

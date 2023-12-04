@@ -1,0 +1,133 @@
+<head>
+    <link rel="stylesheet" href="css/chats.css">
+    <script defer src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.0.0/firebase-messaging.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script defer src="/js/fcm.js"></script>
+    <script defer type="module" src="/js/chats/chatApp.js"></script>
+    <script defer type="module" src="/js/chats/uploaders.js"></script>
+    <script defer src="/js/search.js"></script>
+
+</head>
+
+<div id="content-page" class="content-page chats" chat-app>
+    <div class="rooms-wrapper open">
+        <div class="form-group mb-0">
+            <div class="d-flex">
+                <input type="search" class="form-control" name="search"
+                id="searchInput" placeholder="Search"
+                aria-controls="chat-list-table">
+            </div>
+        </div>
+        <div class="rooms" id="chat-list-table"></div>
+    </div>
+    <div class="mobile-room-head">
+        <h3></h3>
+        <button>
+            <img src="/images/icons/right-arrow.png" alt="">
+        </button>
+    </div>
+    <div class="messages"></div>
+    <div class="sendForm">
+        <input class="messageInput" name="message" type="text" placeholder="Type here...">
+        <div class="iq-card-header-toolbar iq-music-drop d-flex align-items-center col-2 col-md-1">
+            <div class="modal-wrapper" modal="upload-image">
+                <div class="modal">
+                    <div class="head">
+                        <h3>Upload image</h3>
+                        <a class="btn-close trigger" modal-target="upload-image"></a>
+                    </div>
+                    <div class="content">
+                        <form action="" class="modal-form uploader-form" method="post" enctype="multipart/form-data">
+                            <div class="uploader-input">
+                                <input type="file" required name="image" accept="image/png,image/jpg,image/jpeg">
+                                <p>Drop image here or click to browse.</p>
+                            </div>
+                            <button type="button">Upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-wrapper" modal="upload-video">
+                <div class="modal">
+                    <div class="head">
+                        <h3>Upload video</h3>
+                        <a class="btn-close trigger" modal-target="upload-video"></a>
+                    </div>
+                    <div class="content">
+                        <form action="" class="modal-form uploader-form" method="post" enctype="multipart/form-data">
+                            <div class="uploader-input">
+                                <input type="file" required name="video" accept="video/mp4,video.mov">
+                                <p>Drop video here or click to browse.</p>
+                            </div>
+                            <button type="button">Upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-wrapper" modal="upload-record">
+                <div class="modal">
+                    <div class="head">
+                        <h3>Upload voice record</h3>
+                        <a class="btn-close trigger" modal-target="upload-record"></a>
+                    </div>
+                    <div class="content">
+                        <form action="" class="modal-form uploader-form" method="post" enctype="multipart/form-data">
+                            <div class="uploader-input">
+                                <input type="file" required name="record" accept="audio/mp3,audio/mpeg">
+                                <p>Drop record here or click to browse.</p>
+                            </div>
+                            <button type="button">Upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-wrapper" modal="upload-document">
+                <div class="modal">
+                    <div class="head">
+                        <h3>Upload document</h3>
+                        <a class="btn-close trigger" modal-target="upload-document"></a>
+                    </div>
+                    <div class="content">
+                        <form action="" class="modal-form uploader-form" method="post" enctype="multipart/form-data">
+                            <div class="uploader-input">
+                                <input type="file" required name="document" accept="application/pdf,text/plain,application/zip">
+                                <p>Drop file here or click to browse.</p>
+                            </div>
+                            <button type="button">Upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <span class="dropdown-toggle text-primary" id="dropdownMenuButton2" data-toggle="dropdown"
+                    aria-expanded="false" role="button">
+                    <i class="ri-attachment-2 text-white"></i>
+                </span>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
+                    <a class="dropdown-item trigger btn-open" modal-target="upload-image">
+                        <i class="ri-image-line"></i>
+                        Image
+                    </a>
+                    <a class="dropdown-item trigger btn-open" modal-target="upload-video">
+                        <i class="ri-video-line"></i>
+                        Video
+                    </a>
+                    <a class="dropdown-item trigger btn-open" modal-target="upload-record">
+                        <i class="ri-record-mail-line"></i>
+                        Record
+                    </a>
+                    <!-- <a class="dropdown-item trigger btn-open" modal-target="upload-document">
+                        <i class="ri-file-text-line"></i>
+                        Document
+                    </a> -->
+                </div>
+            </div>
+        </div>
+        <button class="messageSubmit">
+            <i class="ri-send-plane-2-fill"></i>
+        </button>
+        <input type="hidden" name="roomId" room-input>
+    </div>
+</div>
